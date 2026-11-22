@@ -132,6 +132,23 @@ UI_COPILOT_PATH = r"d:\Project\FraudRakshak\docs_assets\ui_call_copilot.png"
 UI_VOICE_PATH = r"d:\Project\FraudRakshak\docs_assets\ui_voice_ai.png"
 KMCLU_LOGO_PATH = r"d:\Project\FraudRakshak\docs_assets\kmclu_logo.jpeg"
 
+# Student & Institution Details as Provided by the User
+PROJECT_TITLE = "FraudRakshak: Multilingual AI-Powered Cyber Fraud Detection & Voice Advisory System"
+STUDENT_NAME = "Shreyansh Agrahari"
+ROLL_NO = "2308302056"
+DEGREE_NAME = "Bachelor of Technology"
+BRANCH_NAME = "Computer Science and Engineering with Artificial Intelligence and Data Science"
+SUPERVISOR_NAME = "Mrs. Ankita Agrawal"
+SUPERVISOR_DESIGNATION = "Assistant Professor"
+HOD_NAME = "Dr. Suman Kumar Mishra"
+HOD_DESIGNATION = "Head, Department of Computer Science & Engineering"
+DEPARTMENT_NAME = "Department of Computer Science & Engineering"
+FACULTY_NAME = "FACULTY OF ENGINEERING AND TECHNOLOGY"
+UNIVERSITY_NAME = "KHWAJA MOINUDDIN CHISHTI LANGUAGE UNIVERSITY"
+LOCATION = "LUCKNOW, UTTAR PRADESH"
+ACADEMIC_SESSION = "2026-2027"
+SUBMISSION_DATE_STR = "Date: ________________________"
+
 def create_docx_report(filepath):
     doc = docx.Document()
 
@@ -211,33 +228,34 @@ def create_docx_report(filepath):
     # 1. TITLE SHEET (Specimen 'A')
     # ==========================================
     add_p("A MINI PROJECT REPORT ON", bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_before=10, space_after=12)
-    add_p("fraudRakshak: Multilingual AI-Powered Cyber Fraud Detection & Voice Advisory System", bold=True, size=16, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=18)
+    add_p(f"{PROJECT_TITLE}", bold=True, size=15, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=16)
     
     add_p("Submitted in partial fulfilment of the requirements of the degree of", italic=True, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
-    add_p("Bachelor of Technology", bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
+    add_p(f"{DEGREE_NAME}", bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
     add_p("in", italic=True, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
-    add_p("Computer Science and Engineering", bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=20)
+    add_p(f"{BRANCH_NAME}", bold=True, size=12.5, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=18)
     
-    add_p("by", italic=True, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=8)
-    add_p("Shreyansh Agrahari", bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
-    add_p("(Roll No. _____________________)", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=20)
+    add_p("by", italic=True, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
+    add_p(f"{STUDENT_NAME}", bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
+    add_p(f"(Roll No. {ROLL_NO})", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=16)
 
     add_p("Supervisor (s):", bold=True, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
     add_p("_______________________________________", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
-    add_p("[Supervisor Name / Designation, Dept. of CSE]", italic=True, size=11, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=20)
+    add_p(f"{SUPERVISOR_NAME}", bold=True, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=1)
+    add_p(f"{SUPERVISOR_DESIGNATION}, {DEPARTMENT_NAME}", italic=True, size=11, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=16)
 
     # University Logo
     if os.path.exists(KMCLU_LOGO_PATH):
         p_logo = doc.add_paragraph()
         p_logo.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p_logo.paragraph_format.space_after = Pt(16)
+        p_logo.paragraph_format.space_after = Pt(14)
         p_logo.add_run().add_picture(KMCLU_LOGO_PATH, width=Inches(1.5))
 
-    add_p("Department of Computer Science and Engineering", bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
-    add_p("FACULTY OF ENGINEERING AND TECHNOLOGY", bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
-    add_p("KHWAJA MOINUDDIN CHISHTI LANGUAGE UNIVERSITY", bold=True, size=14, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
-    add_p("LUCKNOW, UTTAR PRADESH", bold=True, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=8)
-    add_p("Academic Session 2024–2025", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=0)
+    add_p(f"{DEPARTMENT_NAME}", bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
+    add_p(f"({FACULTY_NAME})", bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
+    add_p(f"{UNIVERSITY_NAME}", bold=True, size=14, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
+    add_p(f"{LOCATION}", bold=True, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
+    add_p(f"Academic Session {ACADEMIC_SESSION}", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=0)
 
     doc.add_page_break()
 
@@ -247,10 +265,10 @@ def create_docx_report(filepath):
     add_p("CERTIFICATE", bold=True, size=16, align=WD_ALIGN_PARAGRAPH.CENTER, space_before=20, space_after=24)
 
     add_p(
-        "This is to certify that the Mini Project Report entitled \"fraudRakshak: Multilingual AI-Powered Cyber Fraud Detection & Voice Advisory System\" "
-        "submitted by Shreyansh Agrahari (Roll No. _____________________) in partial fulfilment of the requirements for the award of the degree of "
-        "Bachelor of Technology in Computer Science and Engineering from Khwaja Moinuddin Chishti Language University, Lucknow, is a bona fide record "
-        "of original work carried out by him under our supervision and guidance during the academic session 2024–2025.",
+        f"This is to certify that the Mini Project Report entitled \"{PROJECT_TITLE}\" "
+        f"submitted by {STUDENT_NAME} (Roll No. {ROLL_NO}) in partial fulfilment of the requirements for the award of the degree of "
+        f"{DEGREE_NAME} in {BRANCH_NAME} from {UNIVERSITY_NAME}, Lucknow, is a bona fide record "
+        f"of original work carried out by him under our supervision and guidance during the academic session {ACADEMIC_SESSION}.",
         size=12, space_after=18
     )
 
@@ -271,14 +289,14 @@ def create_docx_report(filepath):
     cell_guide = table.rows[0].cells[0].paragraphs[0]
     cell_guide.alignment = WD_ALIGN_PARAGRAPH.LEFT
     cell_guide.paragraph_format.line_spacing = 1.3
-    r = cell_guide.add_run("______________________________\nSignature of Project Guide\n[Guide Name]\nAssistant Professor / Associate Professor\nDepartment of Computer Science & Engg.")
+    r = cell_guide.add_run(f"______________________________\nSignature of Project Guide\n{SUPERVISOR_NAME}\n{SUPERVISOR_DESIGNATION}\n{DEPARTMENT_NAME}")
     r.font.name = 'Times New Roman'
     r.font.size = Pt(11)
 
     cell_hod = table.rows[0].cells[1].paragraphs[0]
     cell_hod.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     cell_hod.paragraph_format.line_spacing = 1.3
-    r = cell_hod.add_run("______________________________\nSignature of Head of Department\n[HOD Name]\nHead, Department of CSE\nFaculty of Engineering & Technology")
+    r = cell_hod.add_run(f"______________________________\nSignature of Head of Department\n{HOD_NAME}\n{HOD_DESIGNATION}\n{FACULTY_NAME}")
     r.font.name = 'Times New Roman'
     r.font.size = Pt(11)
 
@@ -301,12 +319,14 @@ def create_docx_report(filepath):
     add_p("_________________________________", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=2)
     add_p("(Signature)", bold=False, size=11, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=16)
 
-    add_p("Shreyansh Agrahari", bold=True, size=12, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=2)
+    add_p(f"{STUDENT_NAME}", bold=True, size=12, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=2)
     add_p("(Name of the student)", bold=False, size=11, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=16)
 
-    add_p("Roll No.: _________________________", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=16)
-    add_p("Date: November 22, 2026", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=4)
-    add_p("Place: Lucknow, Uttar Pradesh", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=0)
+    add_p(f"{ROLL_NO}", bold=True, size=12, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=2)
+    add_p("(Roll No.)", bold=False, size=11, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=16)
+
+    add_p(f"{SUBMISSION_DATE_STR}", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=4)
+    add_p(f"Place: {LOCATION}", bold=False, size=12, align=WD_ALIGN_PARAGRAPH.LEFT, space_after=0)
 
     doc.add_page_break()
 
@@ -316,14 +336,15 @@ def create_docx_report(filepath):
     add_p("ACKNOWLEDGEMENT", bold=True, size=16, align=WD_ALIGN_PARAGRAPH.CENTER, space_before=20, space_after=24)
 
     add_p(
-        "I would like to express my deepest gratitude to my esteemed project guide, whose continuous guidance, encouragement, and insightful feedback "
-        "were invaluable throughout the conception, architectural design, and implementation of this Mini Project entitled \"fraudRakshak\".",
+        f"I would like to express my deepest gratitude to my esteemed project guide, {SUPERVISOR_NAME}, {SUPERVISOR_DESIGNATION}, {DEPARTMENT_NAME}, "
+        f"whose continuous guidance, encouragement, and insightful feedback were invaluable throughout the conception, architectural design, and "
+        f"implementation of this Mini Project entitled \"{PROJECT_TITLE}\".",
         size=12, space_after=12
     )
     add_p(
-        "I extend my sincere appreciation to the Head of the Department, Department of Computer Science and Engineering, and the Dean, Faculty of "
-        "Engineering and Technology, Khwaja Moinuddin Chishti Language University, Lucknow, for providing the necessary institutional facilities, "
-        "computational environment, and academic ecosystem to successfully carry out this technical investigation.",
+        f"I extend my sincere appreciation to {HOD_NAME}, Head of the Department, {DEPARTMENT_NAME}, and the Dean, {FACULTY_NAME}, "
+        f"{UNIVERSITY_NAME}, Lucknow, for providing the necessary institutional facilities, computational environment, and academic ecosystem "
+        "to successfully carry out this technical investigation.",
         size=12, space_after=12
     )
     add_p(
@@ -332,9 +353,10 @@ def create_docx_report(filepath):
         size=12, space_after=30
     )
 
-    add_p("Shreyansh Agrahari", bold=True, size=12, align=WD_ALIGN_PARAGRAPH.RIGHT, space_after=2)
-    add_p("B.Tech, Computer Science and Engineering", bold=False, size=11, align=WD_ALIGN_PARAGRAPH.RIGHT, space_after=2)
-    add_p("Khwaja Moinuddin Chishti Language University, Lucknow", italic=True, size=11, align=WD_ALIGN_PARAGRAPH.RIGHT, space_after=0)
+    add_p(f"{STUDENT_NAME}", bold=True, size=12, align=WD_ALIGN_PARAGRAPH.RIGHT, space_after=2)
+    add_p(f"Roll No.: {ROLL_NO}", bold=False, size=11, align=WD_ALIGN_PARAGRAPH.RIGHT, space_after=2)
+    add_p(f"B.Tech, {BRANCH_NAME}", bold=False, size=11, align=WD_ALIGN_PARAGRAPH.RIGHT, space_after=2)
+    add_p(f"{UNIVERSITY_NAME}, Lucknow", italic=True, size=11, align=WD_ALIGN_PARAGRAPH.RIGHT, space_after=0)
 
     doc.add_page_break()
 
@@ -833,23 +855,24 @@ def create_pdf_report(filepath):
     # 1. TITLE SHEET (Specimen 'A')
     # ==========================================
     story.append(Paragraph("A MINI PROJECT REPORT ON", ParagraphStyle('TC', parent=style_cover_sub_bold, spaceBefore=10, spaceAfter=14)))
-    story.append(Paragraph("<b>fraudRakshak: Multilingual AI-Powered Cyber Fraud Detection &amp; Voice Advisory System</b>", style_cover_title))
+    story.append(Paragraph(f"<b>{PROJECT_TITLE}</b>", style_cover_title))
     story.append(Spacer(1, 10))
 
     story.append(Paragraph("<i>Submitted in partial fulfilment of the requirements of the degree of</i>", style_cover_sub))
-    story.append(Paragraph("<b>Bachelor of Technology</b>", style_cover_sub_bold))
+    story.append(Paragraph(f"<b>{DEGREE_NAME}</b>", style_cover_sub_bold))
     story.append(Paragraph("<i>in</i>", style_cover_sub))
-    story.append(Paragraph("<b>Computer Science and Engineering</b>", style_cover_sub_bold))
+    story.append(Paragraph(f"<b>{BRANCH_NAME}</b>", ParagraphStyle('BN', parent=style_cover_sub_bold, fontSize=12)))
     story.append(Spacer(1, 14))
 
     story.append(Paragraph("<i>by</i>", style_cover_sub))
-    story.append(Paragraph("<b>Shreyansh Agrahari</b>", style_cover_sub_bold))
-    story.append(Paragraph("(Roll No. _____________________)", style_cover_sub))
+    story.append(Paragraph(f"<b>{STUDENT_NAME}</b>", style_cover_sub_bold))
+    story.append(Paragraph(f"(Roll No. {ROLL_NO})", style_cover_sub))
     story.append(Spacer(1, 12))
 
     story.append(Paragraph("<b>Supervisor (s):</b>", style_cover_sub_bold))
     story.append(Paragraph("_______________________________________", style_cover_sub))
-    story.append(Paragraph("<i>[Supervisor Name / Designation, Dept. of CSE]</i>", style_cover_sub))
+    story.append(Paragraph(f"<b>{SUPERVISOR_NAME}</b>", style_cover_sub_bold))
+    story.append(Paragraph(f"<i>{SUPERVISOR_DESIGNATION}, {DEPARTMENT_NAME}</i>", style_cover_sub))
     story.append(Spacer(1, 12))
 
     # University Logo
@@ -859,11 +882,11 @@ def create_pdf_report(filepath):
         story.append(img_logo)
         story.append(Spacer(1, 12))
 
-    story.append(Paragraph("<b>Department of Computer Science and Engineering</b>", style_cover_sub_bold))
-    story.append(Paragraph("<b>FACULTY OF ENGINEERING AND TECHNOLOGY</b>", style_cover_sub_bold))
-    story.append(Paragraph("<b>KHWAJA MOINUDDIN CHISHTI LANGUAGE UNIVERSITY</b>", ParagraphStyle('U', parent=style_cover_sub_bold, fontSize=13.5)))
-    story.append(Paragraph("<b>LUCKNOW, UTTAR PRADESH</b>", style_cover_sub_bold))
-    story.append(Paragraph("Academic Session 2024–2025", style_cover_sub))
+    story.append(Paragraph(f"<b>{DEPARTMENT_NAME}</b>", style_cover_sub_bold))
+    story.append(Paragraph(f"<b>({FACULTY_NAME})</b>", style_cover_sub_bold))
+    story.append(Paragraph(f"<b>{UNIVERSITY_NAME}</b>", ParagraphStyle('U', parent=style_cover_sub_bold, fontSize=13.5)))
+    story.append(Paragraph(f"<b>{LOCATION}</b>", style_cover_sub_bold))
+    story.append(Paragraph(f"Academic Session {ACADEMIC_SESSION}", style_cover_sub))
 
     story.append(PageBreak())
 
@@ -872,10 +895,10 @@ def create_pdf_report(filepath):
     # ==========================================
     story.append(Paragraph("CERTIFICATE", style_h1_center))
     story.append(Paragraph(
-        "This is to certify that the Mini Project Report entitled <b>\"fraudRakshak: Multilingual AI-Powered Cyber Fraud Detection &amp; Voice Advisory System\"</b> "
-        "submitted by <b>Shreyansh Agrahari</b> (Roll No. _____________________) in partial fulfilment of the requirements for the award of the degree of "
-        "<b>Bachelor of Technology in Computer Science and Engineering</b> from <b>Khwaja Moinuddin Chishti Language University, Lucknow</b>, is a bona fide record "
-        "of original work carried out by him under our supervision and guidance during the academic session 2024–2025.",
+        f"This is to certify that the Mini Project Report entitled <b>\"{PROJECT_TITLE}\"</b> "
+        f"submitted by <b>{STUDENT_NAME}</b> (Roll No. <b>{ROLL_NO}</b>) in partial fulfilment of the requirements for the award of the degree of "
+        f"<b>{DEGREE_NAME} in {BRANCH_NAME}</b> from <b>{UNIVERSITY_NAME}, Lucknow</b>, is a bona fide record "
+        f"of original work carried out by him under our supervision and guidance during the academic session {ACADEMIC_SESSION}.",
         style_body
     ))
     story.append(Spacer(1, 12))
@@ -889,8 +912,8 @@ def create_pdf_report(filepath):
     # Signatures
     sig_data = [
         [
-            Paragraph("______________________________<br/><b>Signature of Project Guide</b><br/>[Guide Name]<br/>Assistant / Associate Professor<br/>Dept. of Computer Science &amp; Engg.", ParagraphStyle('SG', parent=style_body, leading=14)),
-            Paragraph("______________________________<br/><b>Signature of Head of Department</b><br/>[HOD Name]<br/>Head, Department of CSE<br/>Faculty of Engineering &amp; Technology", ParagraphStyle('SH', parent=style_body, leading=14, alignment=TA_RIGHT))
+            Paragraph(f"______________________________<br/><b>Signature of Project Guide</b><br/><b>{SUPERVISOR_NAME}</b><br/>{SUPERVISOR_DESIGNATION}<br/>{DEPARTMENT_NAME}", ParagraphStyle('SG', parent=style_body, leading=14)),
+            Paragraph(f"______________________________<br/><b>Signature of Head of Department</b><br/><b>{HOD_NAME}</b><br/>{HOD_DESIGNATION}<br/>{FACULTY_NAME}", ParagraphStyle('SH', parent=style_body, leading=14, alignment=TA_RIGHT))
         ]
     ]
     sig_table = Table(sig_data, colWidths=[225, 225])
@@ -918,7 +941,7 @@ def create_pdf_report(filepath):
     story.append(Spacer(1, 50))
 
     dec_data = [
-        [Paragraph("_________________________________<br/><b>(Signature)</b><br/><br/><b>Shreyansh Agrahari</b><br/>(Name of the student)<br/><br/><b>Roll No.:</b> _________________________<br/><b>Date:</b> November 22, 2026<br/><b>Place:</b> Lucknow, Uttar Pradesh", ParagraphStyle('D', parent=style_body, leading=16))]
+        [Paragraph(f"_________________________________<br/><b>(Signature)</b><br/><br/><b>{STUDENT_NAME}</b><br/>(Name of the student)<br/><br/><b>{ROLL_NO}</b><br/>(Roll No.)<br/><br/>{SUBMISSION_DATE_STR}<br/>Place: {LOCATION}", ParagraphStyle('D', parent=style_body, leading=16))]
     ]
     dec_table = Table(dec_data, colWidths=[450])
     dec_table.setStyle(TableStyle([
@@ -934,15 +957,16 @@ def create_pdf_report(filepath):
     # ==========================================
     story.append(Paragraph("ACKNOWLEDGEMENT", style_h1_center))
     story.append(Paragraph(
-        "I would like to express my deepest gratitude to my esteemed project guide, whose continuous guidance, encouragement, and insightful feedback "
-        "were invaluable throughout the conception, architectural design, and implementation of this Mini Project entitled <b>\"fraudRakshak\"</b>.",
+        f"I would like to express my deepest gratitude to my esteemed project guide, <b>{SUPERVISOR_NAME}</b>, {SUPERVISOR_DESIGNATION}, {DEPARTMENT_NAME}, "
+        f"whose continuous guidance, encouragement, and insightful feedback were invaluable throughout the conception, architectural design, and "
+        f"implementation of this Mini Project entitled <b>\"{PROJECT_TITLE}\"</b>.",
         style_body
     ))
     story.append(Spacer(1, 10))
     story.append(Paragraph(
-        "I extend my sincere appreciation to the Head of the Department, Department of Computer Science and Engineering, and the Dean, Faculty of "
-        "Engineering and Technology, Khwaja Moinuddin Chishti Language University, Lucknow, for providing the necessary institutional facilities, "
-        "computational environment, and academic ecosystem to successfully carry out this technical investigation.",
+        f"I extend my sincere appreciation to <b>{HOD_NAME}</b>, Head of the Department, {DEPARTMENT_NAME}, and the Dean, {FACULTY_NAME}, "
+        f"{UNIVERSITY_NAME}, Lucknow, for providing the necessary institutional facilities, computational environment, and academic ecosystem "
+        "to successfully carry out this technical investigation.",
         style_body
     ))
     story.append(Spacer(1, 10))
@@ -953,7 +977,7 @@ def create_pdf_report(filepath):
     ))
     story.append(Spacer(1, 40))
 
-    story.append(Paragraph("<b>Shreyansh Agrahari</b><br/>B.Tech, Computer Science and Engineering<br/><i>Khwaja Moinuddin Chishti Language University, Lucknow</i>", ParagraphStyle('AR', parent=style_body, alignment=TA_RIGHT, leading=15)))
+    story.append(Paragraph(f"<b>{STUDENT_NAME}</b><br/>Roll No.: {ROLL_NO}<br/>B.Tech, {BRANCH_NAME}<br/><i>{UNIVERSITY_NAME}, Lucknow</i>", ParagraphStyle('AR', parent=style_body, alignment=TA_RIGHT, leading=15)))
 
     story.append(PageBreak())
 
