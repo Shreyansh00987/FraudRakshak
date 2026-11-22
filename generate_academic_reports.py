@@ -81,6 +81,11 @@ UI_VOICE_PATH = r"d:\Project\FraudRakshak\docs_assets\ui_voice_ai.png"
 KMCLU_LOGO_PATH = r"d:\Project\FraudRakshak\docs_assets\kmclu_logo.jpeg"
 DFD_LEVEL_0_PATH = r"d:\Project\FraudRakshak\docs_assets\dfd_level_0.png"
 DFD_LEVEL_1_PATH = r"d:\Project\FraudRakshak\docs_assets\dfd_level_1.png"
+FIG2_PATH = r"d:\Project\FraudRakshak\docs_assets\fig2_layered_architecture.png"
+FIG3_PATH = r"d:\Project\FraudRakshak\docs_assets\fig3_dfd_level_0.png"
+FIG4_PATH = r"d:\Project\FraudRakshak\docs_assets\fig4_dfd_level_1.png"
+FIG5_PATH = r"d:\Project\FraudRakshak\docs_assets\fig5_usecase_sequence.png"
+FIG6_PATH = r"d:\Project\FraudRakshak\docs_assets\fig6_class_diagram.png"
 
 # 10 Common Indian Scams (Written in Simple, Easy-to-Explain Words)
 VECTORS_LIST = [
@@ -433,22 +438,24 @@ def create_docx_report(filepath):
         ("    5.1 Step-by-Step System Workflow", "11"),
         ("    5.2 Scam Scoring Formula & Logic", "12"),
         ("    5.3 Three-Level Risk Classification (Safe, Medium, High)", "14"),
-        ("Chapter 6: System Design & Architecture", "15"),
-        ("    6.1 Overall System Structure", "15"),
-        ("    6.2 Data Flow Diagrams (DFD Level 0 & Level 1)", "16"),
-        ("    6.3 Live Interface Diagrams", "18"),
-        ("Chapter 7: Implementation Details & Tech Stack", "19"),
-        ("    7.1 Technologies Used and Why", "19"),
-        ("    7.2 Frontend Design (React 19 & Tailwind CSS)", "20"),
-        ("    7.3 Backend Server & AI API (Python FastAPI & Vercel)", "22"),
-        ("Chapter 8: Results, Testing & Discussion", "24"),
-        ("    8.1 Testing with 86 Real-World Cases", "24"),
-        ("    8.2 Detection Accuracy Across All 10 Scam Types", "25"),
-        ("    8.3 Zero False Alarms on Real Bank Alerts", "27"),
-        ("Chapter 9: Conclusion and Future Scope", "28"),
-        ("    9.1 Summary of What We Achieved", "28"),
-        ("    9.2 Future Improvements (Android App & Carrier Support)", "29"),
-        ("References", "30")
+        ("Chapter 6: System Design", "15"),
+        ("    6.1 Layered Architecture", "15"),
+        ("    6.2 Data Flow Diagram (Level 0)", "16"),
+        ("    6.3 Data Flow Diagram (Level 1)", "17"),
+        ("    6.4 Use Case & Sequence Diagrams", "18"),
+        ("    6.5 Class Diagram", "19"),
+        ("Chapter 7: Implementation Details & Tech Stack", "20"),
+        ("    7.1 Technologies Used and Why", "20"),
+        ("    7.2 Frontend Design (React 19 & Tailwind CSS)", "21"),
+        ("    7.3 Backend Server & AI API (Python FastAPI & Vercel)", "23"),
+        ("Chapter 8: Results, Testing & Discussion", "25"),
+        ("    8.1 Testing with 86 Real-World Cases", "25"),
+        ("    8.2 Detection Accuracy Across All 10 Scam Types", "26"),
+        ("    8.3 Zero False Alarms on Real Bank Alerts", "28"),
+        ("Chapter 9: Conclusion and Future Scope", "29"),
+        ("    9.1 Summary of What We Achieved", "29"),
+        ("    9.2 Future Improvements (Android App & Carrier Support)", "30"),
+        ("References", "31")
     ]
 
     for item, page in toc_items:
@@ -619,60 +626,72 @@ def create_docx_report(filepath):
     doc.add_page_break()
 
     # ==========================================
-    # CHAPTER 6: SYSTEM DESIGN & ARCHITECTURE
+    # CHAPTER 6: SYSTEM DESIGN
     # ==========================================
-    add_heading1("CHAPTER 6: SYSTEM DESIGN & ARCHITECTURE")
+    add_heading1("6. SYSTEM DESIGN")
 
-    add_heading2("6.1 Overall System Structure")
-    add_p("FraudRakshak is designed using a clean, modern three-tier architecture:")
-    add_bullet("Frontend (Client): Built with React 19 and Tailwind CSS. It runs directly inside the user's web browser.", bold_prefix="1. Frontend Layer: ")
-    add_bullet("Voice Engine: Uses the native Web Speech API built into modern web browsers to convert speech to text and text to speech in Hindi & English.", bold_prefix="2. Audio Layer: ")
-    add_bullet("Backend API: A lightweight Node.js Express serverless API running on Vercel's global edge network.", bold_prefix="3. Server Layer: ")
-    add_bullet("AI Engine: A Python FastAPI service that powers the scam rule engine and evaluates message safety.", bold_prefix="4. AI Microservice: ")
-
-    add_heading2("6.2 Data Flow Diagrams (DFD Level 0 & Level 1)")
     add_p(
-        "Data Flow Diagrams (DFDs) visually describe how user data flows into FraudRakshak, gets evaluated by the detection modules, and produces safety alerts and complaint letters."
+        "The system has three layers (Figure 2): a presentation layer (message threat scanner, voice advisor UI, call simulator & copilot), "
+        "an application layer (input validation and speech pre-processing, multi-vector threat analyzer and whitelist filter, and the risk scoring and voice advisory engine), "
+        "and a data and model layer (scam vector dictionaries D1, legitimate bank whitelist patterns D2, and 1930 cybercrime reporting schema D3). "
+        "This separation keeps the code modular, so the threat rules or the interface can be changed independently."
     )
 
-    # 6.2.1 DFD Level 0
-    add_heading2("6.2.1 DFD Level 0: Context Level Diagram")
-    add_p(
-        "Figure 6.1 illustrates the context-level DFD. The User/Citizen inputs suspicious SMS messages, WhatsApp text, or spoken queries into the central FraudRakshak System (0.0). "
-        "The system evaluates the data and outputs a 0-100 Risk Score, warning flags, spoken voice advice, and a pre-formatted Zero-FIR complaint to the 1930 Cyber Crime Portal."
-    )
-    if os.path.exists(DFD_LEVEL_0_PATH):
-        p_dfd0 = doc.add_paragraph()
-        p_dfd0.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p_dfd0.paragraph_format.space_before = Pt(8)
-        p_dfd0.paragraph_format.space_after = Pt(4)
-        p_dfd0.add_run().add_picture(DFD_LEVEL_0_PATH, width=Inches(5.5))
-        add_p("Figure 6.1: DFD Level 0 - Context Level Diagram of FraudRakshak", italic=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
+    if os.path.exists(FIG2_PATH):
+        p_fig2 = doc.add_paragraph()
+        p_fig2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_fig2.paragraph_format.space_before = Pt(6)
+        p_fig2.paragraph_format.space_after = Pt(2)
+        p_fig2.add_run().add_picture(FIG2_PATH, width=Inches(5.6))
+        add_p("Figure 2: Layered architecture of the system", bold=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
 
-    # 6.2.2 DFD Level 1
-    add_heading2("6.2.2 DFD Level 1: Detailed Functional Data Flow Diagram")
-    add_p(
-        "Figure 6.2 illustrates the internal sub-processes of FraudRakshak: "
-        "(1.0) Text & Audio Pre-processing, (2.0) Multi-Vector Threat Analysis using Threat Dictionaries D1, "
-        "(3.0) Legitimate Bank Whitelist Filter using Bank Pattern Store D2, (4.0) Risk Scoring & Decision Engine, "
-        "(5.0) Voice Advisory & Call Simulator Copilot, and (6.0) 1930 Zero-FIR Complaint Formatter."
-    )
-    if os.path.exists(DFD_LEVEL_1_PATH):
-        p_dfd1 = doc.add_paragraph()
-        p_dfd1.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p_dfd1.paragraph_format.space_before = Pt(8)
-        p_dfd1.paragraph_format.space_after = Pt(4)
-        p_dfd1.add_run().add_picture(DFD_LEVEL_1_PATH, width=Inches(5.5))
-        add_p("Figure 6.2: DFD Level 1 - Detailed Functional Data Flow Diagram of FraudRakshak", italic=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
+    doc.add_page_break()
 
-    add_heading2("6.3 Live Interface Diagrams")
-    if os.path.exists(UI_COPILOT_PATH):
-        p_img = doc.add_paragraph()
-        p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p_img.paragraph_format.space_before = Pt(8)
-        p_img.paragraph_format.space_after = Pt(4)
-        p_img.add_run().add_picture(UI_COPILOT_PATH, width=Inches(5.0))
-        add_p("Figure 6.3: FraudRakshak Call Simulator & Live Copilot Interface", italic=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
+    if os.path.exists(FIG3_PATH):
+        p_fig3 = doc.add_paragraph()
+        p_fig3.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_fig3.paragraph_format.space_before = Pt(6)
+        p_fig3.paragraph_format.space_after = Pt(2)
+        p_fig3.add_run().add_picture(FIG3_PATH, width=Inches(5.3))
+        add_p("Figure 3: Data flow diagram, level 0", bold=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=10)
+
+    if os.path.exists(FIG4_PATH):
+        p_fig4 = doc.add_paragraph()
+        p_fig4.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_fig4.paragraph_format.space_before = Pt(6)
+        p_fig4.paragraph_format.space_after = Pt(2)
+        p_fig4.add_run().add_picture(FIG4_PATH, width=Inches(5.1))
+        add_p("Figure 4: Data flow diagram, level 1", bold=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=10)
+
+    add_p(
+        "Figure 5(a) is the use case diagram: citizens scan messages, listen to voice advisories, practice scam responses in the simulator, "
+        "and generate 1930 FIR drafts, while cyber cell officers update threat intelligence rules and review incident submissions. "
+        "Figure 5(b) is the sequence of one request: the interface validates the input, the pre-processor extracts features, the threat engine calculates risk score, "
+        "and the advisory engine generates voice guidance and pre-filled complaint drafts."
+    )
+
+    doc.add_page_break()
+
+    if os.path.exists(FIG5_PATH):
+        p_fig5 = doc.add_paragraph()
+        p_fig5.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_fig5.paragraph_format.space_before = Pt(6)
+        p_fig5.paragraph_format.space_after = Pt(2)
+        p_fig5.add_run().add_picture(FIG5_PATH, width=Inches(5.6))
+        add_p("Figure 5: (a) Use case diagram; (b) sequence diagram", bold=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=10)
+
+    add_p(
+        "ThreatDetector holds the threat vector dictionaries and produces risk scores, matched scam tags, and recommended citizen advisories. "
+        "AdvisoryGenerator formats localized guidance and pre-filled 1930 Zero-FIR drafts."
+    )
+
+    if os.path.exists(FIG6_PATH):
+        p_fig6 = doc.add_paragraph()
+        p_fig6.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_fig6.paragraph_format.space_before = Pt(6)
+        p_fig6.paragraph_format.space_after = Pt(2)
+        p_fig6.add_run().add_picture(FIG6_PATH, width=Inches(5.2))
+        add_p("Figure 6: Class diagram", bold=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
 
     doc.add_page_break()
 
@@ -912,6 +931,17 @@ def create_pdf_report(filepath):
         spaceAfter=8
     )
 
+    style_fig_caption = ParagraphStyle(
+        'FigCaption',
+        parent=style_body,
+        fontName='Times-Bold',
+        fontSize=10,
+        leading=13,
+        alignment=TA_CENTER,
+        spaceBefore=4,
+        spaceAfter=10
+    )
+
     story = []
 
     # ==========================================
@@ -1101,22 +1131,24 @@ def create_pdf_report(filepath):
         ("    5.1 Step-by-Step System Workflow", "11"),
         ("    5.2 Scam Scoring Formula & Logic", "12"),
         ("    5.3 Three-Level Risk Classification (Safe, Medium, High)", "14"),
-        ("Chapter 6: System Design & Architecture", "15"),
-        ("    6.1 Overall System Structure", "15"),
-        ("    6.2 Data Flow Diagrams (DFD Level 0 & Level 1)", "16"),
-        ("    6.3 Live Interface Diagrams", "18"),
-        ("Chapter 7: Implementation Details & Tech Stack", "19"),
-        ("    7.1 Technologies Used and Why", "19"),
-        ("    7.2 Frontend Design (React 19 & Tailwind CSS)", "20"),
-        ("    7.3 Backend Server & AI API (Python FastAPI & Vercel)", "22"),
-        ("Chapter 8: Results, Testing & Discussion", "24"),
-        ("    8.1 Testing with 86 Real-World Cases", "24"),
-        ("    8.2 Detection Accuracy Across All 10 Scam Types", "25"),
-        ("    8.3 Zero False Alarms on Real Bank Alerts", "27"),
-        ("Chapter 9: Conclusion and Future Scope", "28"),
-        ("    9.1 Summary of What We Achieved", "28"),
-        ("    9.2 Future Improvements (Android App & Carrier Support)", "29"),
-        ("References", "30")
+        ("Chapter 6: System Design", "15"),
+        ("    6.1 Layered Architecture", "15"),
+        ("    6.2 Data Flow Diagram (Level 0)", "16"),
+        ("    6.3 Data Flow Diagram (Level 1)", "17"),
+        ("    6.4 Use Case & Sequence Diagrams", "18"),
+        ("    6.5 Class Diagram", "19"),
+        ("Chapter 7: Implementation Details & Tech Stack", "20"),
+        ("    7.1 Technologies Used and Why", "20"),
+        ("    7.2 Frontend Design (React 19 & Tailwind CSS)", "21"),
+        ("    7.3 Backend Server & AI API (Python FastAPI & Vercel)", "23"),
+        ("Chapter 8: Results, Testing & Discussion", "25"),
+        ("    8.1 Testing with 86 Real-World Cases", "25"),
+        ("    8.2 Detection Accuracy Across All 10 Scam Types", "26"),
+        ("    8.3 Zero False Alarms on Real Bank Alerts", "28"),
+        ("Chapter 9: Conclusion and Future Scope", "29"),
+        ("    9.1 Summary of What We Achieved", "29"),
+        ("    9.2 Future Improvements (Android App & Carrier Support)", "30"),
+        ("References", "31")
     ]
 
     toc_table_data = []
@@ -1263,61 +1295,77 @@ def create_pdf_report(filepath):
     story.append(PageBreak())
 
     # CHAPTER 6
-    story.append(Paragraph("CHAPTER 6: SYSTEM DESIGN & ARCHITECTURE", style_h1))
-    story.append(Paragraph("6.1 Overall System Structure", style_h2))
-    story.append(Paragraph("• <b>1. Frontend Layer:</b> Built with React 19 and Tailwind CSS. It runs directly inside the user's web browser.", style_bullet))
-    story.append(Paragraph("• <b>2. Audio Layer:</b> Uses the native Web Speech API built into modern web browsers to convert speech to text and text to speech in Hindi & English.", style_bullet))
-    story.append(Paragraph("• <b>3. Server Layer:</b> A lightweight Node.js Express serverless API running on Vercel's global edge network.", style_bullet))
-    story.append(Paragraph("• <b>4. AI Microservice:</b> A Python FastAPI service that powers the scam rule engine and evaluates message safety.", style_bullet))
-
-    story.append(Paragraph("6.2 Data Flow Diagrams (DFD Level 0 &amp; Level 1)", style_h2))
+    story.append(Paragraph("6. SYSTEM DESIGN", style_h1))
     story.append(Paragraph(
-        "Data Flow Diagrams (DFDs) visually describe how user data flows into FraudRakshak, gets evaluated by the detection modules, and produces safety alerts and complaint letters.",
+        "The system has three layers (Figure 2): a presentation layer (message threat scanner, voice advisor UI, call simulator & copilot), "
+        "an application layer (input validation and speech pre-processing, multi-vector threat analyzer and whitelist filter, and the risk scoring and voice advisory engine), "
+        "and a data and model layer (scam vector dictionaries D1, legitimate bank whitelist patterns D2, and 1930 cybercrime reporting schema D3). "
+        "This separation keeps the code modular, so the threat rules or the interface can be changed independently.",
         style_body
     ))
 
-    # 6.2.1 DFD Level 0
-    story.append(Paragraph("6.2.1 DFD Level 0: Context Level Diagram", style_h2))
-    story.append(Paragraph(
-        "Figure 6.1 illustrates the context-level DFD. The User/Citizen inputs suspicious SMS messages, WhatsApp text, or spoken queries into the central FraudRakshak System (0.0). "
-        "The system evaluates the data and outputs a 0-100 Risk Score, warning flags, spoken voice advice, and a pre-formatted Zero-FIR complaint to the 1930 Cyber Crime Portal.",
-        style_body
-    ))
-    if os.path.exists(DFD_LEVEL_0_PATH):
-        img_dfd0 = RLImage(DFD_LEVEL_0_PATH, width=5.5*72, height=3.3*72)
-        img_dfd0.hAlign = 'CENTER'
+    if os.path.exists(FIG2_PATH):
+        img_fig2 = RLImage(FIG2_PATH, width=5.6*72, height=5.6*72*0.606)
+        img_fig2.hAlign = 'CENTER'
+        story.append(Spacer(1, 10))
+        story.append(img_fig2)
         story.append(Spacer(1, 6))
-        story.append(img_dfd0)
-        story.append(Spacer(1, 3))
-        story.append(Paragraph("<i>Figure 6.1: DFD Level 0 - Context Level Diagram of FraudRakshak</i>", ParagraphStyle('CAP_D0', parent=style_body, fontSize=9.5, alignment=TA_CENTER)))
+        story.append(Paragraph("Figure 2: Layered architecture of the system", style_fig_caption))
 
     story.append(PageBreak())
 
-    # 6.2.2 DFD Level 1
-    story.append(Paragraph("6.2.2 DFD Level 1: Detailed Functional Data Flow Diagram", style_h2))
+    if os.path.exists(FIG3_PATH):
+        img_fig3 = RLImage(FIG3_PATH, width=5.3*72, height=5.3*72*0.438)
+        img_fig3.hAlign = 'CENTER'
+        story.append(Spacer(1, 6))
+        story.append(img_fig3)
+        story.append(Spacer(1, 4))
+        story.append(Paragraph("Figure 3: Data flow diagram, level 0", style_fig_caption))
+
+    story.append(Spacer(1, 6))
+
+    if os.path.exists(FIG4_PATH):
+        img_fig4 = RLImage(FIG4_PATH, width=5.1*72, height=5.1*72*0.593)
+        img_fig4.hAlign = 'CENTER'
+        story.append(Spacer(1, 6))
+        story.append(img_fig4)
+        story.append(Spacer(1, 4))
+        story.append(Paragraph("Figure 4: Data flow diagram, level 1", style_fig_caption))
+
+    story.append(Spacer(1, 8))
     story.append(Paragraph(
-        "Figure 6.2 illustrates the internal sub-processes of FraudRakshak: "
-        "(1.0) Text &amp; Audio Pre-processing, (2.0) Multi-Vector Threat Analysis using Threat Dictionaries D1, "
-        "(3.0) Legitimate Bank Whitelist Filter using Bank Pattern Store D2, (4.0) Risk Scoring &amp; Decision Engine, "
-        "(5.0) Voice Advisory &amp; Call Simulator Copilot, and (6.0) 1930 Zero-FIR Complaint Formatter.",
+        "Figure 5(a) is the use case diagram: citizens scan messages, listen to voice advisories, practice scam responses in the simulator, "
+        "and generate 1930 FIR drafts, while cyber cell officers update threat intelligence rules and review incident submissions. "
+        "Figure 5(b) is the sequence of one request: the interface validates the input, the pre-processor extracts features, the threat engine calculates risk score, "
+        "and the advisory engine generates voice guidance and pre-filled complaint drafts.",
         style_body
     ))
-    if os.path.exists(DFD_LEVEL_1_PATH):
-        img_dfd1 = RLImage(DFD_LEVEL_1_PATH, width=5.5*72, height=3.7*72)
-        img_dfd1.hAlign = 'CENTER'
-        story.append(Spacer(1, 6))
-        story.append(img_dfd1)
-        story.append(Spacer(1, 3))
-        story.append(Paragraph("<i>Figure 6.2: DFD Level 1 - Detailed Functional Data Flow Diagram of FraudRakshak</i>", ParagraphStyle('CAP_D1', parent=style_body, fontSize=9.5, alignment=TA_CENTER)))
 
-    story.append(Paragraph("6.3 Live Interface Diagrams", style_h2))
-    if os.path.exists(UI_COPILOT_PATH):
-        img_copilot = RLImage(UI_COPILOT_PATH, width=4.8*72, height=1.65*72)
-        img_copilot.hAlign = 'CENTER'
+    story.append(PageBreak())
+
+    if os.path.exists(FIG5_PATH):
+        img_fig5 = RLImage(FIG5_PATH, width=5.6*72, height=5.6*72*0.450)
+        img_fig5.hAlign = 'CENTER'
         story.append(Spacer(1, 6))
-        story.append(img_copilot)
-        story.append(Spacer(1, 3))
-        story.append(Paragraph("<i>Figure 6.3: FraudRakshak Call Simulator &amp; Live Copilot Interface</i>", ParagraphStyle('CAP', parent=style_body, fontSize=9.5, alignment=TA_CENTER)))
+        story.append(img_fig5)
+        story.append(Spacer(1, 4))
+        story.append(Paragraph("Figure 5: (a) Use case diagram; (b) sequence diagram", style_fig_caption))
+
+    story.append(Spacer(1, 8))
+    story.append(Paragraph(
+        "ThreatDetector holds the threat vector dictionaries and produces risk scores, matched scam tags, and recommended citizen advisories. "
+        "AdvisoryGenerator formats localized guidance and pre-filled 1930 Zero-FIR drafts.",
+        style_body
+    ))
+    story.append(Spacer(1, 6))
+
+    if os.path.exists(FIG6_PATH):
+        img_fig6 = RLImage(FIG6_PATH, width=5.3*72, height=5.3*72*0.451)
+        img_fig6.hAlign = 'CENTER'
+        story.append(Spacer(1, 6))
+        story.append(img_fig6)
+        story.append(Spacer(1, 4))
+        story.append(Paragraph("Figure 6: Class diagram", style_fig_caption))
 
     story.append(PageBreak())
 
