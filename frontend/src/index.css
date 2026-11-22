@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0B0F19;
+    color: #F8FAFC;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+  }
+}
+
+/* Custom Clean Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0F19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1F2937;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Clean Card Surface */
+.clean-card {
+  background-color: #111827;
+  border: 1px solid #1F2937;
+  border-radius: 1rem;
+}
+
+.clean-card-danger {
+  background-color: #1A1016;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 1rem;
+}
+
+.clean-card-safe {
+  background-color: #0F1A15;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 1rem;
+}

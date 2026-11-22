@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Production builds
+dist/
+build/
+*/dist/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+*.env
+
+# Python artifacts
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*$py.class
+env/
+venv/
+ENV/
+.venv/
+.pytest_cache/
+
+# Vercel & Editor configs
+.vercel/
+.vscode/
+.idea/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
