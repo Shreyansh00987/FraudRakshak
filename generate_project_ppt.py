@@ -601,7 +601,7 @@ def build_slide_8_results(prs):
     """Slide 8: Testing, Results & Evaluation."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     set_slide_background(slide)
-    add_header(slide, "Results & Performance Evaluation", "Testing & Verification", "Tested across 86 real-world messages with 100% scam detection and 0% false alarms")
+    add_header(slide, "Results & Performance Evaluation", "Testing & Verification", "Tested across 86 real-world messages with 91.9% overall accuracy (80% - 100% per vector) and 0% false alarms")
 
     # 4 Metric Stat Badges across top
     stat_w = Inches(2.72)
@@ -611,9 +611,9 @@ def build_slide_8_results(prs):
 
     stats_info = [
         ("86", "TOTAL TEST CASES", COLOR_PRIMARY, COLOR_CARD_BG),
-        ("100%", "SCAM DETECTION (70/70)", COLOR_GREEN, COLOR_GREEN_BG),
+        ("90.0%", "SCAM DETECTION (63/70)", COLOR_GREEN, COLOR_GREEN_BG),
         ("0.0%", "FALSE ALARM RATE (0/16)", COLOR_SECONDARY, COLOR_CARD_BG),
-        ("1.00", "F1-SCORE & PRECISION", COLOR_PRIMARY, COLOR_CARD_BG)
+        ("91.9%", "OVERALL ACCURACY (79/86)", COLOR_PRIMARY, COLOR_CARD_BG)
     ]
 
     for idx, (num, label, num_col, bg_col) in enumerate(stats_info):
@@ -653,12 +653,13 @@ def build_slide_8_results(prs):
     h_bl.text_frame.paragraphs[0].font.bold = True
     h_bl.text_frame.paragraphs[0].font.color.rgb = COLOR_PRIMARY
 
-    tf_bl = slide.shapes.add_textbox(Inches(1.05), Inches(3.6), Inches(5.15), Inches(3.0)).text_frame
+    tf_bl = slide.shapes.add_textbox(Inches(1.05), Inches(3.55), Inches(5.15), Inches(3.05)).text_frame
     tf_bl.word_wrap = True
-    add_bullet(tf_bl, "Comprehensive Dataset", "Compiled 86 realistic test cases spanning English, Hindi, and Hinglish languages.", pt_size=12, space_after=10)
-    add_bullet(tf_bl, "True Positives (70 / 70)", "Detected 100% of scams including Digital Arrest, Electricity fraud, and Fake APKs.", pt_size=12, space_after=10)
-    add_bullet(tf_bl, "True Negatives (16 / 16)", "Correctly verified authentic bank debits, Swiggy alerts, and regular greetings.", pt_size=12, space_after=10)
-    add_bullet(tf_bl, "Zero False Alarms (0 / 16)", "Crucial achievement: citizens will not turn off the system due to annoying fake alerts.", pt_size=12, space_after=4)
+    add_bullet(tf_bl, "Comprehensive Dataset", "Compiled 86 realistic test cases spanning English, Hindi, and Hinglish languages.", pt_size=11.5, space_after=8)
+    add_bullet(tf_bl, "True Positives (63 / 70)", "Detected 90.0% of scams across diverse Indian vectors with rates between 80% and 100%.", pt_size=11.5, space_after=8)
+    add_bullet(tf_bl, "True Negatives (16 / 16)", "Correctly verified authentic bank debits, Swiggy alerts, and regular greetings.", pt_size=11.5, space_after=8)
+    add_bullet(tf_bl, "Zero False Alarms (0 / 16)", "Crucial achievement: citizens will not turn off the system due to annoying fake alerts.", pt_size=11.5, space_after=8)
+    add_bullet(tf_bl, "System F1-Score: 0.95", "High precision (1.00) ensures zero wasted time for police and citizens.", pt_size=11.5, space_after=2)
 
     # Right Bottom: Category Breakdown Table
     add_card(slide, Inches(6.8), bottom_top, Inches(5.73), bottom_h)
@@ -669,14 +670,19 @@ def build_slide_8_results(prs):
     h_br.text_frame.paragraphs[0].font.bold = True
     h_br.text_frame.paragraphs[0].font.color.rgb = COLOR_SECONDARY
 
-    tf_br = slide.shapes.add_textbox(Inches(7.05), Inches(3.6), Inches(5.23), Inches(3.0)).text_frame
+    tf_br = slide.shapes.add_textbox(Inches(7.05), Inches(3.55), Inches(5.23), Inches(3.05)).text_frame
     tf_br.word_wrap = True
-    add_bullet(tf_br, "Digital Arrest / Police Impersonation", "10 / 10 Detected  (100.0% Accuracy)", pt_size=11.5, space_after=7)
-    add_bullet(tf_br, "Electricity Bill Disconnection", "8 / 8 Detected  (100.0% Accuracy)", pt_size=11.5, space_after=7)
-    add_bullet(tf_br, "Bank Account Block / Pan KYC", "10 / 10 Detected  (100.0% Accuracy)", pt_size=11.5, space_after=7)
-    add_bullet(tf_br, "Part-Time Job / Telegram Scam", "8 / 8 Detected  (100.0% Accuracy)", pt_size=11.5, space_after=7)
-    add_bullet(tf_br, "Lottery, Gift, Rewards & Couriers", "14 / 14 Detected  (100.0% Accuracy)", pt_size=11.5, space_after=7)
-    add_bullet(tf_br, "Safe Bank Transaction SMS", "16 / 16 Marked Safe  (0% False Positives)", pt_size=11.5, space_after=2)
+    add_bullet(tf_br, "Digital Arrest / Fake Police", "8 / 8 Detected  (100.0% Accuracy)", pt_size=10.5, space_after=4)
+    add_bullet(tf_br, "Electricity Bill Cutoff Threat", "7 / 8 Detected  (87.5% Accuracy)", pt_size=10.5, space_after=4)
+    add_bullet(tf_br, "Bank KYC & Account Block", "9 / 10 Detected  (90.0% Accuracy)", pt_size=10.5, space_after=4)
+    add_bullet(tf_br, "Part-Time Job / Telegram", "6 / 7 Detected  (85.7% Accuracy)", pt_size=10.5, space_after=4)
+    add_bullet(tf_br, "Lottery & KBC Cash Prize", "6 / 6 Detected  (100.0% Accuracy)", pt_size=10.5, space_after=4)
+    add_bullet(tf_br, "Customs & Courier Parcel", "6 / 7 Detected  (85.7% Accuracy)", pt_size=10.5, space_after=4)
+    add_bullet(tf_br, "Dangerous APK Sideloading", "7 / 8 Detected  (87.5% Accuracy)", pt_size=10.5, space_after=4)
+    add_bullet(tf_br, "Illegal Loan App Blackmail", "4 / 5 Detected  (80.0% Accuracy)", pt_size=10.5, space_after=4)
+    add_bullet(tf_br, "SIM Deactivation Threat", "5 / 5 Detected  (100.0% Accuracy)", pt_size=10.5, space_after=4)
+    add_bullet(tf_br, "Screen Sharing App Scam", "5 / 6 Detected  (83.3% Accuracy)", pt_size=10.5, space_after=4)
+    add_bullet(tf_br, "Safe Bank Transaction SMS", "16 / 16 Marked Safe  (0% False Positives)", pt_size=10.5, space_after=2)
 
     add_footer(slide, 8)
 

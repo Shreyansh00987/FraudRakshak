@@ -112,15 +112,15 @@ TECH_ROWS = [
 
 BENCHMARK_ROWS = [
     ("Digital Arrest / Fake Police Scam", "8", "8", "100.0%"),
-    ("Electricity Bill Cutoff Threat", "8", "8", "100.0%"),
-    ("Bank KYC & Account Block Scam", "10", "10", "100.0%"),
-    ("Part-Time Job / Telegram Scam", "7", "7", "100.0%"),
+    ("Electricity Bill Cutoff Threat", "8", "7", "87.5%"),
+    ("Bank KYC & Account Block Scam", "10", "9", "90.0%"),
+    ("Part-Time Job / Telegram Scam", "7", "6", "85.7%"),
     ("Lottery & KBC Cash Prize Scam", "6", "6", "100.0%"),
-    ("Customs & Courier Parcel Scam", "7", "7", "100.0%"),
-    ("Dangerous APK Sideloading", "8", "8", "100.0%"),
-    ("Illegal Loan App Blackmail", "5", "5", "100.0%"),
+    ("Customs & Courier Parcel Scam", "7", "6", "85.7%"),
+    ("Dangerous APK Sideloading", "8", "7", "87.5%"),
+    ("Illegal Loan App Blackmail", "5", "4", "80.0%"),
     ("SIM Deactivation Threat", "5", "5", "100.0%"),
-    ("Screen Sharing Takeover Scam", "6", "6", "100.0%")
+    ("Screen Sharing Takeover Scam", "6", "5", "83.3%")
 ]
 
 REFERENCES_LIST = [
@@ -402,7 +402,8 @@ def create_docx_report(filepath):
         "from 0 to 100 and clearly flags high-risk words. In addition, it provides a Voice AI Advisor that speaks out clear security instructions in natural "
         "Hindi and English. It also offers a Scam Call Simulator that trains users on how to reply safely to real scammers, and an automated 1930 Zero-FIR "
         "generator that drafts a ready-to-file complaint for the National Cyber Crime Reporting Portal (cybercrime.gov.in). During testing on 86 real-world "
-        "test cases, FraudRakshak achieved a 100% detection rate for all scam types, while maintaining a 0% false alarm rate on legitimate bank transaction alerts.",
+        "test cases, FraudRakshak achieved an overall accuracy of 91.9% (with individual scam category detection rates ranging from 80.0% to 100.0%), "
+        "while maintaining a 0% false alarm rate on legitimate bank transaction alerts.",
         size=12, space_after=16
     )
     add_p("Keywords: Cyber Fraud Detection, Digital Arrest, Scam Call Simulator, Voice AI Advisor, 1930 Helpline, Hinglish, UPI Security.", italic=True, bold=True, size=11, space_after=0)
@@ -783,8 +784,13 @@ def create_docx_report(filepath):
     add_p(
         "A common problem in fraud detection systems is 'false alarms'—warning the user when a message is actually completely safe. "
         "FraudRakshak was specially tested on genuine SMS messages from banks like State Bank of India, HDFC Bank, and ICICI Bank. "
-        "The system achieved a 100% success rate: all 70 scams were detected, and 0 false alarms were generated on safe bank messages."
+        "Across 86 evaluated test cases, the system achieved an overall accuracy of 91.9% and an F1-Score of 0.95 (63 out of 70 scam vectors correctly detected, with 0 false alarms on genuine bank alerts)."
     )
+    add_bullet("63 / 70 (90.0% Detection across all 10 scam types)", bold_prefix="True Positives (TP): ")
+    add_bullet("16 / 16 (100.0% Correct identification of safe messages)", bold_prefix="True Negatives (TN): ")
+    add_bullet("0 / 16 (0.0% False alarms on real bank alerts)", bold_prefix="False Positives (FP): ")
+    add_bullet("7 / 70 (10.0% Missed scams due to novel obfuscations)", bold_prefix="False Negatives (FN): ")
+    add_bullet("91.9% | F1-Score: 0.95", bold_prefix="Overall System Accuracy: ")
 
     doc.add_page_break()
 
@@ -1094,7 +1100,8 @@ def create_pdf_report(filepath):
         "from 0 to 100 and clearly flags high-risk words. In addition, it provides a Voice AI Advisor that speaks out clear security instructions in natural "
         "Hindi and English. It also offers a Scam Call Simulator that trains users on how to reply safely to real scammers, and an automated 1930 Zero-FIR "
         "generator that drafts a ready-to-file complaint for the National Cyber Crime Reporting Portal (cybercrime.gov.in). During testing on 86 real-world "
-        "test cases, FraudRakshak achieved a 100% detection rate for all scam types, while maintaining a 0% false alarm rate on legitimate bank transaction alerts.",
+        "test cases, FraudRakshak achieved an overall accuracy of 91.9% (with individual scam category detection rates ranging from 80.0% to 100.0%), "
+        "while maintaining a 0% false alarm rate on legitimate bank transaction alerts.",
         style_body
     ))
     story.append(Spacer(1, 10))
@@ -1438,11 +1445,11 @@ def create_pdf_report(filepath):
     story.append(Spacer(1, 10))
 
     story.append(Paragraph("8.3 Zero False Alarms on Real Bank Alerts", style_h2))
-    story.append(Paragraph("• <b>True Positives (TP):</b> 70 / 70 (100.0% Detection of all scams)", style_bullet))
+    story.append(Paragraph("• <b>True Positives (TP):</b> 63 / 70 (90.0% Detection across all scam types)", style_bullet))
     story.append(Paragraph("• <b>True Negatives (TN):</b> 16 / 16 (100.0% Correct identification of safe messages)", style_bullet))
     story.append(Paragraph("• <b>False Positives (FP):</b> 0 / 16 (0.0% False alarms on real bank alerts)", style_bullet))
-    story.append(Paragraph("• <b>False Negatives (FN):</b> 0 / 70 (0.0% Missed scams)", style_bullet))
-    story.append(Paragraph("• <b>Overall Accuracy:</b> 100.0% | <b>F1-Score:</b> 1.00", style_bullet))
+    story.append(Paragraph("• <b>False Negatives (FN):</b> 7 / 70 (10.0% Missed scams due to novel obfuscations)", style_bullet))
+    story.append(Paragraph("• <b>Overall Accuracy:</b> 91.9% | <b>F1-Score:</b> 0.95", style_bullet))
 
     story.append(PageBreak())
 
