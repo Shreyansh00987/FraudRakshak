@@ -682,8 +682,8 @@ def create_docx_report(filepath):
         add_p("Figure 5: (a) Use case diagram; (b) sequence diagram", bold=True, size=10, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=10)
 
     add_p(
-        "ThreatDetector holds the threat vector dictionaries and produces risk scores, matched scam tags, and recommended citizen advisories. "
-        "AdvisoryGenerator formats localized guidance and pre-filled 1930 Zero-FIR drafts."
+        "ScamDetectionEngine holds the 10-vector threat dictionaries (D1) and bank whitelist patterns (D2) to compute risk scores, matched scam tags, and danger flags. "
+        "VoiceAndFIRAdvisor synthesizes localized spoken guidance in Hindi/English and formats pre-filled 1930 Zero-FIR complaint drafts."
     )
 
     if os.path.exists(FIG6_PATH):
@@ -1360,8 +1360,8 @@ def create_pdf_report(filepath):
 
     story.append(Spacer(1, 8))
     story.append(Paragraph(
-        "ThreatDetector holds the threat vector dictionaries and produces risk scores, matched scam tags, and recommended citizen advisories. "
-        "AdvisoryGenerator formats localized guidance and pre-filled 1930 Zero-FIR drafts.",
+        "ScamDetectionEngine holds the 10-vector threat dictionaries (D1) and bank whitelist patterns (D2) to compute risk scores, matched scam tags, and danger flags. "
+        "VoiceAndFIRAdvisor synthesizes localized spoken guidance in Hindi/English and formats pre-filled 1930 Zero-FIR complaint drafts.",
         style_body
     ))
     story.append(Spacer(1, 6))
